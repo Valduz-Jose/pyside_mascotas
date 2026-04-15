@@ -1,0 +1,50 @@
+### --- Python --- ###
+# Archivos compilados
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Entornos virtuales
+.venv/
+venv/
+env/
+ENV/
+bin/
+lib/
+include/
+share/
+
+# Distribución / Empaquetado
+dist/
+build/
+*.egg-info/
+*.spec
+
+### --- PySide / Qt --- ###
+# Archivos generados por pyside6-uic (Interfaces de usuario)
+# Nota: Es mejor guardar los archivos .ui y generar los .py en tiempo de ejecución
+# o ignorar los archivos generados si los compilas manualmente.
+*_ui.py
+ui_*.py
+
+# Archivos generados por pyside6-rcc (Recursos/Imágenes)
+*_rc.py
+qrc_*.py
+
+# Archivos de proyecto de Qt Designer (opcional si usas Qt Creator)
+*.user
+
+### --- IDEs y Editores --- ###
+# Visual Studio Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# PyCharm / IntelliJ
+.idea/
+
+### --- Sistema --- ###
+.DS_Store
+Thumbs.db
+*.log
