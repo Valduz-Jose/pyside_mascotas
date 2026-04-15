@@ -38,7 +38,8 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 # =========================
 Base = declarative_base()
 
-
+# Permite importar Base desde otros módulos fácilmente
+__all__ = ["engine", "SessionLocal", "Base"]
 # =========================
 # PRUEBA DE CONEXIÓN
 # =========================
