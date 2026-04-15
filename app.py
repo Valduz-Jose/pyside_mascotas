@@ -91,7 +91,25 @@ def main():
     print("🚀 Iniciando aplicación...")
 
     app = QApplication(sys.argv)
-
+    app.setStyleSheet("""
+    QTableWidget {
+        border: none;
+        gridline-color: #444;
+    }
+    QHeaderView::section {
+        background-color: #333;
+        padding: 6px;
+        border: none;
+    }
+    QLineEdit {
+        padding: 6px;
+        border-radius: 6px;
+    }
+    QPushButton {
+        padding: 6px 12px;
+        border-radius: 6px;
+    }
+    """)
     window = MainWindow()
     window.show()
 
