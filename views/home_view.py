@@ -1,3 +1,4 @@
+from PySide6.QtWidgets import QMessageBox  # [NUEVO]
 from PySide6.QtWidgets import (
     QWidget,
     QVBoxLayout,
@@ -16,8 +17,10 @@ class HomeView(QWidget):
     Vista principal que muestra el listado de mascotas
     """
 
-    def __init__(self):
+    def __init__(self, on_edit=None):
         super().__init__()
+
+        self.on_edit = on_edit  # callback hacia app
 
         # =========================
         # LAYOUT PRINCIPAL
@@ -45,7 +48,8 @@ class HomeView(QWidget):
         self.tabla.setColumnCount(4)
         self.tabla.setHorizontalHeaderLabels(["ID", "Nombre", "Especie", "Peso"])
         self.tabla.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-
+        self.tabla.setEditTriggers(QTableWidget.NoEditTriggers)  # [NUEVO]
+        self.tabla.cellDoubleClicked.connect(self.on_double_click)  # [NUEVO]
         layout.addWidget(self.tabla)
 
         # Control de espacios (dashboard)
@@ -72,3 +76,13 @@ class HomeView(QWidget):
             self.tabla.setItem(fila, 1, QTableWidgetItem(mascota.nombre))
             self.tabla.setItem(fila, 2, QTableWidgetItem(mascota.especie))
             self.tabla.setItem(fila, 3, QTableWidgetItem(str(mascota.peso)))
+
+    # [MODIFICADO]
+    def on_double_click(self, row, column):
+        item_id = self.tabla.item(row, 0)
+
+        if item_id:
+            mascota_id = int(item_id.text())
+
+            if self.on_edit:
+                self.on_edit(mascota_id)
